@@ -5,6 +5,7 @@ para ajudar na formação de escalas, acordes e campos harmônicos.
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from notas_musicais import acordes
 
 app = FastAPI()
 
@@ -22,3 +23,18 @@ def get_root():
     """
 
     return message
+
+
+@app.get('/acorde/{cipher}')
+def get_chord(cipher: str) -> dict[str, list[str]]:
+    """
+    Gera as notas de um acorde partindo de uma cifra.
+
+    Args:
+        cipher (str): Um acorde em forma de cifra.
+
+    Returns:
+        dict[str, list[str]]: Um dicionário com as notas e
+            os graus correpondes a escala.
+    """
+    return acordes.acorde(cipher)
