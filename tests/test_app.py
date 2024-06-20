@@ -36,3 +36,11 @@ def test_semitone_must_respond_matching_note(client):
     semitone = 'B'
 
     assert response.json() == semitone
+
+
+def test_triad_must_respond_matching_notes_tone(client):
+    response = client.get('/triade/c/menor')
+
+    triad = ['C', 'D#', 'G']
+
+    assert response.json() == triad

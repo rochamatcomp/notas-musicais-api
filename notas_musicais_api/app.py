@@ -53,3 +53,18 @@ def get_semitone(note: str, interval: int) -> str:
         str: Uma nota correspondente ao intervalo.
     """
     return acordes.semitom(note, intervalo=interval)
+
+
+@app.get('/triade/{note}/{tone}')
+def get_triad(note: str, tone: str) -> list[str]:
+    """
+    Gera triades a partir de uma tônica e uma tonalidade.
+
+    Args:
+        note (str): Uma nota da qual se deseja obter um acorde.
+        tone (str): Tonalidade na qual será formado o acorde.
+
+    Returns:
+        list[str]: A tríade do acorde referente a nota e a tonalidade.
+    """
+    return acordes.triade(note, tone)
