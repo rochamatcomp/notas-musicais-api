@@ -5,7 +5,7 @@ para ajudar na formação de escalas, acordes e campos harmônicos.
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from notas_musicais import acordes, escalas
+from notas_musicais import acordes, campo_harmonico, escalas
 
 app = FastAPI()
 
@@ -83,3 +83,19 @@ def get_scale(tonic: str, tonality: str) -> dict[str, list[str]]:
         dict[str, list[str]]: Um dicionário com as notas da escala e os graus.
     """
     return escalas.escala(tonic, tonality)
+
+
+@app.get('/campo_harmonico/{tonic}/{tonality}')
+def get_harmonic_field(tonic: str, tonality: str) -> dict[str, list[str]]:
+    """
+    Gera um campo harmônico com base em um tônica e uma tonalidade.
+
+    Args:
+        tonic (str): Primeiro grau do campo harmônico.
+        tonality (str): Tonalidade para o campo. Ex: maior, menor, etc...
+
+    Returns:
+        dict[str, list[str]]: Um campo harmônico com
+            as notas da escala e os graus.
+    """
+    return campo_harmonico.campo_harmonico(tonic, tonality)

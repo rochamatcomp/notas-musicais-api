@@ -55,3 +55,14 @@ def test_scale_must_respond_notes_degrees_as_json(client):
     }
 
     assert response.json() == scale
+
+
+def test_harmonic_field_must_respond_chords_degrees(client):
+    response = client.get('/campo_harmonico/c/menor')
+
+    field = {
+        'acordes': ['Cm', 'D°', 'D#', 'Fm', 'Gm', 'G#', 'A#'],
+        'graus': ['i', 'ii°', 'III', 'iv', 'v', 'VI', 'VII'],
+    }
+
+    assert response.json() == field
