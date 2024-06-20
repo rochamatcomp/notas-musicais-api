@@ -5,7 +5,7 @@ para ajudar na formação de escalas, acordes e campos harmônicos.
 
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from notas_musicais import acordes
+from notas_musicais import acordes, escalas
 
 app = FastAPI()
 
@@ -68,3 +68,18 @@ def get_triad(note: str, tonality: str) -> list[str]:
         list[str]: A tríade do acorde referente a nota e a tonalidade.
     """
     return acordes.triade(note, tonality)
+
+
+@app.get('/escala/{tonic}/{tonality}')
+def get_scale(tonic: str, tonality: str) -> dict[str, list[str]]:
+    """
+    Gera uma escala apartir de uma tônica e uma tonalidade.
+
+    Args:
+        tonic (str): Nota que será a tônica da escala.
+        tonality (str): Tonalidade da escala.
+
+    Returns:
+        dict[str, list[str]]: Um dicionário com as notas da escala e os graus.
+    """
+    return escalas.escala(tonic, tonality)

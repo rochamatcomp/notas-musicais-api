@@ -44,3 +44,14 @@ def test_triad_must_respond_matching_notes_tone(client):
     triad = ['C', 'D#', 'G']
 
     assert response.json() == triad
+
+
+def test_scale_must_respond_notes_degrees_as_json(client):
+    response = client.get('/escala/a/menor')
+
+    scale = {
+        'notas': ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+        'graus': ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'],
+    }
+
+    assert response.json() == scale
