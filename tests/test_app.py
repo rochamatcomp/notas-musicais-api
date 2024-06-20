@@ -28,3 +28,11 @@ def test_chord_must_respond_notes_degrees_as_json(client):
     chord = {'notas': ['C', 'D#', 'G'], 'graus': ['I', 'III-', 'V']}
 
     assert response.json() == chord
+
+
+def test_semitone_must_respond_matching_note(client):
+    response = client.get('/semitom/c/-1')
+
+    semitone = 'B'
+
+    assert response.json() == semitone

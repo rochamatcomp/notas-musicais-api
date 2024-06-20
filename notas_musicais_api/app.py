@@ -38,3 +38,18 @@ def get_chord(cipher: str) -> dict[str, list[str]]:
             os graus correpondes a escala.
     """
     return acordes.acorde(cipher)
+
+
+@app.get('/semitom/{note}/{interval}')
+def get_semitone(note: str, interval: int) -> str:
+    """
+    Calcula a distância em semitons para uma outra nota usando intervalos.
+
+    Args:
+        note (str): Uma nota qualquer.
+        interval (int): Um intervalo em semitons.
+
+    Returns:
+        str: Uma nota correspondente ao intervalo.
+    """
+    return acordes.semitom(note, intervalo=interval)
